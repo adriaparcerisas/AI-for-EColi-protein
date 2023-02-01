@@ -227,10 +227,10 @@ fig2s.update_layout(
     bargap=0.15, # gap between bars of adjacent location coordinates.
     bargroupgap=0.1 # gap between bars of the same location coordinate.
 )
+
 tab1, tab2 = st.tabs(["McGeochs method", "Von Heijnes"])
 with tab1:
    st.plotly_chart(fig1s, theme="streamlit", use_container_width=True)
-
 with tab2:
    st.plotly_chart(fig2s, theme="streamlit", use_container_width=True)
 
@@ -251,6 +251,9 @@ fig3.update_layout(
     bargroupgap=0.1 # gap between bars of the same location coordinate.
 )
 
+st.plotly_chart(fig3, theme="streamlit", use_container_width=True)
+
+
 fig4 = px.histogram(data, x="chg")
 fig4.update_layout(
     title='Presence of charge on N-terminus of predicted lipoproteins',
@@ -265,11 +268,9 @@ fig4.update_layout(
     bargap=0.15, # gap between bars of adjacent location coordinates.
     bargroupgap=0.1 # gap between bars of the same location coordinate.
 )
+st.plotly_chart(fig4, theme="streamlit", use_container_width=True)
 
-col3,col4=st.columns(2)
-with col3:
-    st.plotly_chart(fig3, theme="streamlit", use_container_width=True)
-col4.plotly_chart(fig4, theme="streamlit", use_container_width=True)
+
 
 
 fig5 = px.histogram(data, x="aac", nbins=5)
@@ -302,10 +303,6 @@ fig6.update_layout(
     bargroupgap=0.1 # gap between bars of the same location coordinate.
 )
 
-col5,col6=st.columns(2)
-with col5:
-    st.plotly_chart(fig5, theme="streamlit", use_container_width=True)
-col6.plotly_chart(fig6, theme="streamlit", use_container_width=True)
 
 
 
@@ -324,6 +321,16 @@ fig7.update_layout(
     bargroupgap=0.1 # gap between bars of the same location coordinate.
 )
 
+tab5, tab6, tab7 = st.tabs(["Score of aac of outer membrane and periplasmic proteins", "Score of the ALOM membrane spanning region", "Score of ALOM program after excluding putative cleavable signal regions"])
+
+with tab5:
+   st.plotly_chart(fig5, theme="streamlit", use_container_width=True)
+with tab6:
+   st.plotly_chart(fig6, theme="streamlit", use_container_width=True)
+with tab7:
+   st.plotly_chart(fig7, theme="streamlit", use_container_width=True)
+
+
 fig8 = px.histogram(data, x="Outcome")
 fig8.update_layout(
     title='Protein Localization Sites',
@@ -338,12 +345,7 @@ fig8.update_layout(
     bargap=0.15, # gap between bars of adjacent location coordinates.
     bargroupgap=0.1 # gap between bars of the same location coordinate.
 )
-
-col7,col8=st.columns(2)
-with col7:
-    st.plotly_chart(fig7, theme="streamlit", use_container_width=True)
-col8.plotly_chart(fig8, theme="streamlit", use_container_width=True)
-
+st.plotly_chart(fig8, theme="streamlit", use_container_width=True)
 
 # In[51]:
 
