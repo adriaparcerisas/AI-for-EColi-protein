@@ -542,7 +542,7 @@ To do that, we will pass the following outcomes to numbers:
 - pp-->7
          """)
 st.write('')
-col1,col2,col3=st.columns=st.columns(3)
+col1,col2,col3=st.columns(3)
 with col1:
 	st.metric('Explained Variance Score of LogisticRegression multiclass Model: ',(explained_variance_score(y_test,predicion2))
 col2.metric('Logistic Regression Score:',(result_logit2.score(x_test, y_test))
