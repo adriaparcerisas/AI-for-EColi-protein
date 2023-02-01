@@ -895,6 +895,38 @@ with tab5:
 
 # In[148]:
 
+st.markdown('#### Which of these kernels is the most optimal one for the problem?')
+plt.figure(14)
+
+plt.subplot(2,2,1)
+plt.scatter(range(len(y_test)),y_test,label="Real",color="b")
+plt.scatter(range(len(y_test)),prediction_2,label="Prediction",color="g")
+plt.legend(scatterpoints=1)
+plt.title('SVM classifier: Linear Balanced')
+st.pyplot()
+
+plt.subplot(2,2,2)
+plt.scatter(range(len(y_test)),y_test,label="Real",color="b")
+plt.scatter(range(len(y_test)),prediction_3,label="Prediction",color="g")
+plt.legend(scatterpoints=1)
+plt.title('SVM classifier: Rbf ')
+st.pyplot()
+
+plt.subplot(2,2,3)
+plt.scatter(range(len(y_test)),y_test,label="Real",color="b")
+plt.scatter(range(len(y_test)),prediction_4,label="Prediction",color="g")
+plt.legend(scatterpoints=1)
+plt.title('SVM classifier: Poly')
+st.pyplot()
+
+plt.subplot(2,2,4)
+plt.scatter(range(len(y_test)),y_test,label="Real",color="b")
+plt.scatter(range(len(y_test)),prediction_5,label="Prediction",color="g")
+plt.legend(scatterpoints=1)
+plt.title('SVM classifier: Sigmoid')
+st.pyplot()
+
+
 
 st.write('')
 st.subheader('7. Final conclusion')
