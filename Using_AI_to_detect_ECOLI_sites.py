@@ -227,11 +227,12 @@ fig2s.update_layout(
     bargap=0.15, # gap between bars of adjacent location coordinates.
     bargroupgap=0.1 # gap between bars of the same location coordinate.
 )
+tab1, tab2 = st.tabs(["McGeochs method", "Von Heijnes"])
+with tab1:
+   st.plotly_chart(fig1s, theme="streamlit", use_container_width=True)
 
-col1s,col2s=st.columns(2)
-with col1s:
-    st.plotly_chart(fig1s, theme="streamlit", use_container_width=True)
-col2s.plotly_chart(fig2s, theme="streamlit", use_container_width=True)
+with tab2:
+   st.plotly_chart(fig2s, theme="streamlit", use_container_width=True)
 
 
 
