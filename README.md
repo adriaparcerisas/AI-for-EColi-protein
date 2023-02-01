@@ -2,6 +2,16 @@
 _Created on Wednesday Feb 02 13:36:37 2023_
 _Author: Adrià Parcerisas Albés_
 
+## Visualization,  Logistic Regression and SVM: Protein Localization Sites
+Steps:
+a. Data Description
+b. Data Analysis
+c. Attributes histogram
+d. PCA
+e. Logistic Regression Model
+f. Applying Support Vector Machines
+g. Conclusions
+
 ## Source:
 1. Title: Protein Localization Sites
 
