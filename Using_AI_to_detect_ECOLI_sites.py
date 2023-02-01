@@ -203,8 +203,8 @@ st.subheader('3. Attributes histogram')
 import plotly.express as px
 
 
-fig1 = px.histogram(data, x="mcg", nbins=20)
-fig1.update_layout(
+fig1s = px.histogram(data, x="mcg", nbins=20)
+fig1s.update_layout(
     title='McGeochs method for signal sequence recognition',
     xaxis_tickfont_size=14,
     legend=dict(
@@ -218,8 +218,8 @@ fig1.update_layout(
     bargroupgap=0.1 # gap between bars of the same location coordinate.
 )
 
-fig2 = px.histogram(data, x="gvh")
-fig2.update_layout(
+fig2s = px.histogram(data, x="gvh")
+fig2s.update_layout(
     title='Von Heijnes for signal sequence recognition',
     xaxis_tickfont_size=14,
     legend=dict(
@@ -235,8 +235,8 @@ fig2.update_layout(
 
 col1s,col2s=st.columns(2)
 with col1s:
-    st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
-col2s.plotly_chart(fig2, theme="streamlit", use_container_width=True)
+    st.plotly_chart(fig1s, theme="streamlit", use_container_width=True)
+col2s.plotly_chart(fig2s, theme="streamlit", use_container_width=True)
 
 
 
