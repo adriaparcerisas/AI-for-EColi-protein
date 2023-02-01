@@ -978,7 +978,6 @@ st.write('In this analysis we have evaluated a manner to predict the Cellular  L
 
 # In[162]:
 
-
 st.write('Comparing it with the results of the other kernels through our first regression model, the optimal one has been the SVM with a lineal kernel, and the parameter C bein 1.0 and gamma  at 3. Taking into account that the E-Coli outcomes are in ulticlasses, the result obtained is so interesting.')
 
 
