@@ -19,7 +19,11 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import favicon
 st.set_page_config(page_title="Protein Localization Sites ", layout="wide",initial_sidebar_state="collapsed")
-favicon.create_icons("ecoli.png")
+html_code = """
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+"""
+
+st.markdown(html_code, unsafe_allow_html=True)
 
 st.markdown(""" <style> div.css-12w0qpk.e1tzin5v2{
  background-color: #f5f5f5;
