@@ -697,7 +697,7 @@ st.subheader('Prediction results for SVM Linear')
 tab1, tab2, tab3 = st.tabs(["Support vectors of the SVM Linear", "Indices of the SVM Linear", "Number for each class in SVM Linear"])
 with tab1:
 	arr=result_svm2.support_vectors_
-    	arr2 = pd.DataFrame(arr)
+	arr2 = pd.DataFrame(arr)
 	st.write(arr2)
 with tab2:
 	arr=result_svm2.support_
