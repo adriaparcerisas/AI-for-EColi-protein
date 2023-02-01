@@ -26,6 +26,16 @@ html_code = """
 
 st.markdown(html_code, unsafe_allow_html=True)
 
+millnames = ['',' k',' M',' B',' T']
+
+def millify(n):
+    n = float(n)
+    millidx = max(0,min(len(millnames)-1,
+                        int(math.floor(0 if n == 0 else math.log10(abs(n))/3))))
+
+    return '{:.0f}{}'.format(n / 10**(3 * millidx), millnames[millidx])
+
+
 st.markdown(""" <style> div.css-12w0qpk.e1tzin5v2{
  background-color: #f5f5f5;
  border: 2px solid;
@@ -390,11 +400,12 @@ st.write("### Principal Component Analysis (PCA)")
 st.write(dic)
 dic={'1': pca_values[0],'2': pca_values[1],'3': pca_values[2],'4': pca_values[3],'5': pca_values[4],'6': pca_values[5],'7': pca_values[6]}
 st.write('')
-st.write("### PCA values")
-st.write(dic)
-st.write('')
-st.write("### PCA Cumsum Explained Variance values")
-st.write(cum_var_exp)
+col1,col2=st.columns(2)
+with col1:
+	st.write("### PCA values")
+	st.write(dic)
+col2.write("### PCA Cumsum Explained Variance values")
+col2.write(cum_var_exp)
 
 
 # In[69]:
@@ -541,13 +552,15 @@ To do that, we will pass the following outcomes to numbers:
 - pp-->7
          """)
 st.write('')
-st.metric('Explained Variance Score of LogisticRegression multiclass Model: ',explained_variance_score(y_test,predicion2))
+col1,col2,col3=st.columns=st.columns(3)
+with col1:
+	st.metric('Explained Variance Score of LogisticRegression multiclass Model: ',millify(explained_variance_score(y_test,predicion2)))
+col2.metric('Logistic Regression Score:',millify(result_logit2.score(x_test, y_test)))
 report=(classification_report(y_test,predicion2))
 df = pd.read_csv(io.StringIO(report))
-st.write("### Classification Report")
-st.dataframe(df)
-st.write('')
-st.metric('Logistic Regression Score:',result_logit2.score(x_test, y_test))
+col3.write("### Classification Report")
+col3.dataframe(df)
+
 
 
 
@@ -600,13 +613,16 @@ estimator = GridSearchCV(pipe,dict(pca__n_components=n_components,
 
 RES=estimator.fit(x_train, np.ravel(y_train))
 predicion4 = RES.predict(x_test)
-st.metric('Explained Variance Score of Logistic Model 2:',explained_variance_score(y_test,predicion4))
+
+col1,col2,col3=st.columns(3)
+with col1:
+	st.metric('Explained Variance Score of Logistic Model 2:',millify(explained_variance_score(y_test,predicion4)))
+col2.metric('Logistic Regression Score for Model 2:',millify(RES.score(x_test, y_test)))
 report2=(classification_report(y_test,predicion4))
 df2 = pd.read_csv(io.StringIO(report2))
-st.write("### Classification Report for Model 2")
-st.dataframe(df2)
+col3.write("### Classification Report for Model 2")
+col3.dataframe(df2)
 st.write('')
-st.metric('Logistic Regression Score for Model 2:',RES.score(x_test, y_test))
 
 #print (np.exp(RES.params))
 
@@ -680,7 +696,7 @@ result_svm5 = SVC(C=1.0, cache_size=200, class_weight='balanced', coef0=0.0,
 
 #SVM1
 #---------------------------------------------------------------------------------------------
-st.write('**Prediction results for SVM Linear:**')
+st.subheader('Prediction results for SVM Linear')
 # get support vectors
 col1,col2,col3=st.columns(3)
 with col1:
@@ -705,26 +721,28 @@ arr2 = pd.DataFrame(arr)
 col3.write("""### Number for each class in SVM Linear""")
 col3.write(arr2)
 
-
-st.write('**Evaluation results:**')
+st.write('')
+st.subheader('Evaluation results:')
 
 #predicció
 prediction_2 = result_svm2.predict(x_test)
 
 #Avaluació
-st.write('')
-st.metric('Explained Variance Score of SVM Linear Kernel: ',explained_variance_score(y_test,prediction_2))
+col1,col2,col3=st.columns(3)
+with col1:
+	st.metric('Explained Variance Score of SVM Linear Kernel: ',millify(explained_variance_score(y_test,prediction_2)))
+col2.metric('Accuracy of Balanced SVM Linear Kernel Model: ',millify(accuracy_score(y_test,prediction_2)))
+col3.metric('Score of Linear Kernel: ',millify(result_svm2.score(x_test, y_test)))
+
+col3,col4=st.columns(2)
 report3=(classification_report(y_test,prediction_2))
 df3 = pd.read_csv(io.StringIO(report3))
-st.write("### Classification Report for SVM Linear Kernel Model")
-st.dataframe(df3)
-st.metric('Score of Linear Kernel: ',result_svm2.score(x_test, y_test))
-st.write('')
+with col3:
+	st.write("### Classification Report for SVM Linear Kernel Model")
+	st.dataframe(df3)
 report4=(confusion_matrix(y_test,prediction_2))
-st.write("### Confusion Matrix for SVM Linear Kernel Model")
-st.write(report4)
-st.write('')
-st.metric('Accuracy of Balanced SVM Linear Kernel Model: ',accuracy_score(y_test,prediction_2))
+col4.write("### Confusion Matrix for SVM Linear Kernel Model")
+col4.write(report4)
 
 
 # In[155]:
@@ -733,7 +751,7 @@ st.metric('Accuracy of Balanced SVM Linear Kernel Model: ',accuracy_score(y_test
 #SVM2
 #---------------------------------------------------------------------------------------------
 st.write('')
-st.write('**Prediction results for SVM RBF:**')
+st.subheader('Prediction results for SVM RBF:')
 # get support vectors
 col1,col2,col3=st.columns(3)
 with col1:
@@ -758,26 +776,28 @@ arr2 = pd.DataFrame(arr)
 col3.write("""### Number for each class in SVM RBF""")
 col3.write(arr2)
 
-
-st.write('**Evaluation results:**')
+st.write('')
+st.subheader('Evaluation results:')
 
 #predicció
 prediction_3 = result_svm3.predict(x_test)
 
 #Avaluació
-st.write('')
-st.metric('Explained Variance Score of SVM RBF Kernel: ',explained_variance_score(y_test,prediction_3))
+col1,col2,col3=st.columns(3)
+with col1:
+	st.metric('Explained Variance Score of SVM RBF Kernel: ',millify(explained_variance_score(y_test,prediction_3)))
+col2.metric('Accuracy of Balanced SVM Linear Kernel Model: ',millify(accuracy_score(y_test,prediction_3)))
+col3.metric('Score of RBF Kernel: ',millify(result_svm3.score(x_test, y_test)))
+
+col3,col4=st.columns(2)
 report3=(classification_report(y_test,prediction_3))
 df3 = pd.read_csv(io.StringIO(report3))
-st.write("### Classification Report for SVM RBF Kernel Model")
-st.dataframe(df3)
-st.metric('Score of Linear Kernel: ',result_svm3.score(x_test, y_test))
-st.write('')
+with col3:
+	st.write("### Classification Report for SVM RBF Kernel Model")
+	st.dataframe(df3)
 report4=(confusion_matrix(y_test,prediction_3))
-st.write("### Confusion Matrix for SVM RBF Kernel Model")
-st.write(report4)
-st.write('')
-st.metric('Accuracy of Balanced SVM RBF Kernel Model: ',accuracy_score(y_test,prediction_3))
+col4.write("### Confusion Matrix for SVM RBF Kernel Model")
+col4.write(report4)
 
 
 # In[156]:
@@ -786,7 +806,7 @@ st.metric('Accuracy of Balanced SVM RBF Kernel Model: ',accuracy_score(y_test,pr
 #SVM2
 #---------------------------------------------------------------------------------------------
 st.write('')
-st.write('**Prediction results for SVM poly:**')
+st.subheader('Prediction results for SVM poly:')
 # get support vectors
 col1,col2,col3=st.columns(3)
 with col1:
@@ -811,26 +831,28 @@ arr2 = pd.DataFrame(arr)
 col3.write("""### Number for each class in SVM poly""")
 col3.write(arr2)
 
-
-st.write('**Evaluation results:**')
+st.write('')
+st.subheader('Evaluation results:')
 
 #predicció
 prediction_4 = result_svm4.predict(x_test)
 
 #Avaluació
-st.write('')
-st.metric('Explained Variance Score of SVM poly Kernel: ',explained_variance_score(y_test,prediction_4))
+col1,col2,col3=st.columns(3)
+with col1:
+	st.metric('Explained Variance Score of SVM poly Kernel: ',millify(explained_variance_score(y_test,prediction_4)))
+col2.metric('Accuracy of Balanced SVM poly Kernel Model: ',millify(accuracy_score(y_test,prediction_4)))
+col3.metric('Score of poly Kernel: ',millify(result_svm4.score(x_test, y_test)))
+
+col3,col4=st.columns(2)
 report3=(classification_report(y_test,prediction_4))
 df3 = pd.read_csv(io.StringIO(report3))
-st.write("### Classification Report for SVM poly Kernel Model")
-st.dataframe(df3)
-st.metric('Score of Linear Kernel: ',result_svm4.score(x_test, y_test))
-st.write('')
+with col3:
+	st.write("### Classification Report for SVM poly Kernel Model")
+	st.dataframe(df3)
 report4=(confusion_matrix(y_test,prediction_4))
-st.write("### Confusion Matrix for SVM poly Kernel Model")
-st.write(report4)
-st.write('')
-st.metric('Accuracy of Balanced SVM poly Kernel Model: ',accuracy_score(y_test,prediction_4))
+col4.write("### Confusion Matrix for SVM poly Kernel Model")
+col4.write(report4)
 
 
 # In[157]:
@@ -839,7 +861,7 @@ st.metric('Accuracy of Balanced SVM poly Kernel Model: ',accuracy_score(y_test,p
 #SVM2
 #---------------------------------------------------------------------------------------------
 st.write('')
-st.write('**Prediction results for SVM sigmoid:**')
+st.subheader('Prediction results for SVM sigmoid:')
 # get support vectors
 col1,col2,col3=st.columns(3)
 with col1:
@@ -864,26 +886,28 @@ arr2 = pd.DataFrame(arr)
 col3.write("""### Number for each class in SVM sigmoid""")
 col3.write(arr2)
 
-
-st.write('**Evaluation results:**')
+st.write('')
+st.subheader('Evaluation results:')
 
 #predicció
 prediction_5 = result_svm5.predict(x_test)
 
 #Avaluació
-st.write('')
-st.metric('Explained Variance Score of SVM sigmoid Kernel: ',explained_variance_score(y_test,prediction_5))
+col1,col2,col3=st.columns(3)
+with col1:
+	st.metric('Explained Variance Score of SVM sigmoid Kernel: ',millify(explained_variance_score(y_test,prediction_5)))
+col2.metric('Accuracy of Balanced SVM sigmoid Kernel Model: ',millify(accuracy_score(y_test,prediction_5)))
+col3.metric('Score of sigmoid Kernel: ',millify(result_svm5.score(x_test, y_test)))
+
+col3,col4=st.columns(2)
 report3=(classification_report(y_test,prediction_5))
 df3 = pd.read_csv(io.StringIO(report3))
-st.write("### Classification Report for SVM sigmoid Kernel Model")
-st.dataframe(df3)
-st.metric('Score of Linear Kernel: ',result_svm5.score(x_test, y_test))
-st.write('')
+with col3:
+	st.write("### Classification Report for SVM sigmoid Kernel Model")
+	st.dataframe(df3)
 report4=(confusion_matrix(y_test,prediction_5))
-st.write("### Confusion Matrix for SVM sigmoid Kernel Model")
-st.write(report4)
-st.write('')
-st.metric('Accuracy of Balanced SVM sigmoid Kernel Model: ',accuracy_score(y_test,prediction_5))
+col4.write("### Confusion Matrix for SVM sigmoid Kernel Model")
+col4.write(report4)
 
 
 # In[148]:
@@ -903,33 +927,50 @@ st.markdown('#### Which of these kernels is the most optimal one for the problem
 
 plt.figure(14)
 
-plt.subplot(2,2,1)
-plt.scatter(range(len(y_test)),y_test,label="Real",color="b")
-plt.scatter(range(len(y_test)),prediction_2,label="Prediction",color="g")
-plt.legend(scatterpoints=1)
-plt.title('SVM classifier: Linear Balanced')
-st.pyplot()
+import plotly.subplots as sp
+import plotly.graph_objs as go
 
-plt.subplot(2,2,2)
-plt.scatter(range(len(y_test)),y_test,label="Real",color="b")
-plt.scatter(range(len(y_test)),prediction_3,label="Prediction",color="g")
-plt.legend(scatterpoints=1)
-plt.title('SVM classifier: Rbf ')
-st.pyplot()
+y_test = [1, 2, 3, 4, 5]
+prediction_2 = [2, 3, 4, 5, 6]
 
-plt.subplot(2,2,3)
-plt.scatter(range(len(y_test)),y_test,label="Real",color="b")
-plt.scatter(range(len(y_test)),prediction_4,label="Prediction",color="g")
-plt.legend(scatterpoints=1)
-plt.title('SVM classifier: Poly')
-st.pyplot()
+# Create the subplot with 2 rows and 2 columns, and select the first subplot (1,1)
+fig = sp.make_subplots(rows=2, cols=2, subplot_titles=("SVM classifier: Linear Balanced",))
 
-plt.subplot(2,2,4)
-plt.scatter(range(len(y_test)),y_test,label="Real",color="b")
-plt.scatter(range(len(y_test)),prediction_5,label="Prediction",color="g")
-plt.legend(scatterpoints=1)
-plt.title('SVM classifier: Sigmoid')
-st.pyplot()
+# Create the scatter plot for the real values
+scatter_real = go.Scatter(x=range(len(y_test)), y=y_test, mode='markers', name='Real', marker=dict(color='blue'))
+
+# Create the scatter plot for the predictions
+scatter_pred = go.Scatter(x=range(len(y_test)), y=prediction_2, mode='markers', name='Prediction', marker=dict(color='green'))
+
+# Add the scatter plots to the first subplot
+fig.add_trace(scatter_real)
+fig.add_trace(scatter_pred)
+
+# Update the layout of the subplot
+fig.update_layout(title='SVM classifier: Linear Balanced', xaxis_title='Sample index', yaxis_title='Value')
+
+# Display the subplot in Streamlit
+st.plotly_chart(fig)
+
+import plotly.express as px
+
+fig = px.scatter(x=range(len(y_test)), y=y_test, color='Real', labels={'y_test': 'Real'})
+fig.add_scatter(x=range(len(y_test)), y=prediction_3, color='Prediction', labels={'prediction_3': 'Prediction'})
+fig.update_layout(title='SVM classifier: Rbf')
+
+st.plotly_chart(fig)
+
+fig = px.scatter(x=range(len(y_test)), y=y_test, color='Real', labels={'y_test': 'Real'})
+fig.add_scatter(x=range(len(y_test)), y=prediction_4, color='Prediction', labels={'prediction_4': 'Prediction'})
+fig.update_layout(title='SVM classifier: Poly')
+
+st.plotly_chart(fig)
+
+fig = px.scatter(x=range(len(y_test)), y=y_test, color='Real', labels={'y_test': 'Real'})
+fig.add_scatter(x=range(len(y_test)), y=prediction_5, color='Prediction', labels={'prediction_5': 'Prediction'})
+fig.update_layout(title='SVM classifier: Sigmoid')
+
+st.plotly_chart(fig)
 
 
 # In[160]:
