@@ -19,6 +19,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import favicon
 st.set_page_config(page_title="Protein Localization Sites ", layout="wide",initial_sidebar_state="collapsed")
+st.set_option('deprecation.showPyplotGlobalUse', False)
 html_code = """
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 """
