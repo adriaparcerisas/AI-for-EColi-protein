@@ -693,28 +693,21 @@ result_svm5 = SVC(C=1.0, cache_size=200, class_weight='balanced', coef0=0.0,
 #---------------------------------------------------------------------------------------------
 st.subheader('Prediction results for SVM Linear')
 # get support vectors
-col1,col2,col3=st.columns(3)
-with col1:
-    # convert the array to a DataFrame
-    arr=result_svm2.support_vectors_
-    arr2 = pd.DataFrame(arr)
 
-    st.write("""### Support vectors of the SVM Linear""")
-    st.write(arr2)
-# get indices of support vectors
-# convert the array to a DataFrame
-arr=result_svm2.support_
-arr2 = pd.DataFrame(arr)
-
-col2.write("""### Indices of the SVM Linear""")
-col2.write(arr2)
-
- # get number of support vectors for each class
-arr=result_svm2.n_support_
-arr2 = pd.DataFrame(arr)
-
-col3.write("""### Number for each class in SVM Linear""")
-col3.write(arr2)
+tab1, tab2, tab3 = st.tabs(["Support vectors of the SVM Linear", "Indices of the SVM Linear", "Number for each class in SVM Linear"])
+with tab1:
+	arr=result_svm2.support_vectors_
+    	arr2 = pd.DataFrame(arr)
+	st.write(arr2)
+with tab2:
+	arr=result_svm2.support_
+	arr2 = pd.DataFrame(arr)
+	st.write(arr2)
+with tab3:
+	arr=result_svm2.n_support_
+	arr2 = pd.DataFrame(arr)
+	st.write(arr2)
+	
 
 st.write('')
 st.subheader('Evaluation results:')
@@ -723,21 +716,26 @@ st.subheader('Evaluation results:')
 prediction_2 = result_svm2.predict(x_test)
 
 #Avaluació
-col1,col2,col3=st.columns(3)
-with col1:
-	st.metric('Explained Variance Score of SVM Linear Kernel: ',(explained_variance_score(y_test,prediction_2)))
-col2.metric('Accuracy of Balanced SVM Linear Kernel Model: ',(accuracy_score(y_test,prediction_2)))
-col3.metric('Score of Linear Kernel: ',(result_svm2.score(x_test, y_test)))
 
-col3,col4=st.columns(2)
+tab1, tab2, tab3 = st.tabs(["Explained Variance Score of SVM Linear Kernel", "Accuracy of Balanced SVM Linear Kernel Model", "Score of Linear Kernel"])
+with tab1:
+	st.metric('Explained Variance Score of SVM Linear Kernel: ',(explained_variance_score(y_test,prediction_2)))
+with tab2:
+	st.metric('Accuracy of Balanced SVM Linear Kernel Model: ',(accuracy_score(y_test,prediction_2)))
+with tab3:
+	st.metric('Score of Linear Kernel: ',(result_svm2.score(x_test, y_test)))
+
 report3=(classification_report(y_test,prediction_2))
 df3 = pd.read_csv(io.StringIO(report3))
-with col3:
-	st.write("### Classification Report for SVM Linear Kernel Model")
-	st.dataframe(df3)
 report4=(confusion_matrix(y_test,prediction_2))
-col4.write("### Confusion Matrix for SVM Linear Kernel Model")
-col4.write(report4)
+
+tab4,tab5=st.tabs(["Classification Report for SVM Linear Kernel Model", "Confusion Matrix for SVM Linear Kernel Model"])
+
+with tab4:
+	st.dataframe(df3)
+with tab5:
+	st.write(report4)
+
 
 
 # In[155]:
@@ -748,28 +746,22 @@ col4.write(report4)
 st.write('')
 st.subheader('Prediction results for SVM RBF:')
 # get support vectors
-col1,col2,col3=st.columns(3)
-with col1:
-    # convert the array to a DataFrame
-    arr=result_svm3.support_vectors_
-    arr2 = pd.DataFrame(arr)
 
-    st.write("""### Support vectors of the SVM RBF""")
-    st.write(arr2)
-# get indices of support vectors
-# convert the array to a DataFrame
-arr=result_svm3.support_
-arr2 = pd.DataFrame(arr)
+tab1, tab2, tab3 = st.tabs(["Support vectors of the SVM RBF", "Indices of the SVM RBF", "Number for each class in SVM RBF"])
+with tab1:
+	arr=result_svm3.support_vectors_
+    	arr2 = pd.DataFrame(arr)
+	st.write(arr2)
+with tab2:
+	arr=result_svm3.support_
+	arr2 = pd.DataFrame(arr)
+	st.write(arr2)
+with tab3:
+	arr=result_svm3.n_support_
+	arr2 = pd.DataFrame(arr)
+	st.write(arr2)
+	
 
-col2.write("""### Indices of the SVM RBF""")
-col2.write(arr2)
-
- # get number of support vectors for each class
-arr=result_svm3.n_support_
-arr2 = pd.DataFrame(arr)
-
-col3.write("""### Number for each class in SVM RBF""")
-col3.write(arr2)
 
 st.write('')
 st.subheader('Evaluation results:')
@@ -778,21 +770,24 @@ st.subheader('Evaluation results:')
 prediction_3 = result_svm3.predict(x_test)
 
 #Avaluació
-col1,col2,col3=st.columns(3)
-with col1:
+tab1, tab2, tab3 = st.tabs(["Explained Variance Score of SVM RBF Kernel", "Accuracy of Balanced SVM RBF Kernel Model", "Score of RBF Kernel"])
+with tab1:
 	st.metric('Explained Variance Score of SVM RBF Kernel: ',(explained_variance_score(y_test,prediction_3)))
-col2.metric('Accuracy of Balanced SVM Linear Kernel Model: ',(accuracy_score(y_test,prediction_3)))
-col3.metric('Score of RBF Kernel: ',(result_svm3.score(x_test, y_test)))
+with tab2:
+	st.metric('Accuracy of Balanced SVM RBF Kernel Model: ',(accuracy_score(y_test,prediction_3)))
+with tab3:
+	st.metric('Score of RBF Kernel: ',(result_svm3.score(x_test, y_test)))
 
-col3,col4=st.columns(2)
 report3=(classification_report(y_test,prediction_3))
 df3 = pd.read_csv(io.StringIO(report3))
-with col3:
-	st.write("### Classification Report for SVM RBF Kernel Model")
-	st.dataframe(df3)
 report4=(confusion_matrix(y_test,prediction_3))
-col4.write("### Confusion Matrix for SVM RBF Kernel Model")
-col4.write(report4)
+
+tab4,tab5=st.tabs(["Classification Report for SVM RBF Kernel Model", "Confusion Matrix for SVM RBF Kernel Model"])
+
+with tab4:
+	st.dataframe(df3)
+with tab5:
+	st.write(report4)
 
 
 # In[156]:
@@ -803,28 +798,22 @@ col4.write(report4)
 st.write('')
 st.subheader('Prediction results for SVM poly:')
 # get support vectors
-col1,col2,col3=st.columns(3)
-with col1:
-    # convert the array to a DataFrame
-    arr=result_svm4.support_vectors_
-    arr2 = pd.DataFrame(arr)
 
-    st.write("""### Support vectors of the SVM poly""")
-    st.write(arr2)
-# get indices of support vectors
-# convert the array to a DataFrame
-arr=result_svm4.support_
-arr2 = pd.DataFrame(arr)
+tab1, tab2, tab3 = st.tabs(["Support vectors of the SVM poly", "Indices of the SVM poly", "Number for each class in SVM poly"])
+with tab1:
+	arr=result_svm4.support_vectors_
+    	arr2 = pd.DataFrame(arr)
+	st.write(arr2)
+with tab2:
+	arr=result_svm4.support_
+	arr2 = pd.DataFrame(arr)
+	st.write(arr2)
+with tab3:
+	arr=result_svm4.n_support_
+	arr2 = pd.DataFrame(arr)
+	st.write(arr2)
 
-col2.write("""### Indices of the SVM poly""")
-col2.write(arr2)
 
- # get number of support vectors for each class
-arr=result_svm4.n_support_
-arr2 = pd.DataFrame(arr)
-
-col3.write("""### Number for each class in SVM poly""")
-col3.write(arr2)
 
 st.write('')
 st.subheader('Evaluation results:')
@@ -833,21 +822,24 @@ st.subheader('Evaluation results:')
 prediction_4 = result_svm4.predict(x_test)
 
 #Avaluació
-col1,col2,col3=st.columns(3)
-with col1:
+tab1, tab2, tab3 = st.tabs(["Explained Variance Score of SVM poly Kernel", "Accuracy of Balanced SVM poly Kernel Model", "Score of poly Kernel"])
+with tab1:
 	st.metric('Explained Variance Score of SVM poly Kernel: ',(explained_variance_score(y_test,prediction_4)))
-col2.metric('Accuracy of Balanced SVM poly Kernel Model: ',(accuracy_score(y_test,prediction_4)))
-col3.metric('Score of poly Kernel: ',(result_svm4.score(x_test, y_test)))
+with tab2:
+	st.metric('Accuracy of Balanced SVM poly Kernel Model: ',(accuracy_score(y_test,prediction_4)))
+with tab3:
+	st.metric('Score of poly Kernel: ',(result_svm4.score(x_test, y_test)))
 
-col3,col4=st.columns(2)
 report3=(classification_report(y_test,prediction_4))
 df3 = pd.read_csv(io.StringIO(report3))
-with col3:
-	st.write("### Classification Report for SVM poly Kernel Model")
-	st.dataframe(df3)
 report4=(confusion_matrix(y_test,prediction_4))
-col4.write("### Confusion Matrix for SVM poly Kernel Model")
-col4.write(report4)
+
+tab4,tab5=st.tabs(["Classification Report for SVM poly Kernel Model", "Confusion Matrix for SVM poly Kernel Model"])
+
+with tab4:
+	st.dataframe(df3)
+with tab5:
+	st.write(report4)
 
 
 # In[157]:
@@ -858,28 +850,21 @@ col4.write(report4)
 st.write('')
 st.subheader('Prediction results for SVM sigmoid:')
 # get support vectors
-col1,col2,col3=st.columns(3)
-with col1:
-    # convert the array to a DataFrame
-    arr=result_svm5.support_vectors_
-    arr2 = pd.DataFrame(arr)
 
-    st.write("""### Support vectors of the SVM sigmoid""")
-    st.write(arr2)
-# get indices of support vectors
-# convert the array to a DataFrame
-arr=result_svm5.support_
-arr2 = pd.DataFrame(arr)
+tab1, tab2, tab3 = st.tabs(["Support vectors of the SVM sigmoid", "Indices of the SVM sigmoid", "Number for each class in SVM sigmoid"])
+with tab1:
+	arr=result_svm5.support_vectors_
+    	arr2 = pd.DataFrame(arr)
+	st.write(arr2)
+with tab2:
+	arr=result_svm5.support_
+	arr2 = pd.DataFrame(arr)
+	st.write(arr2)
+with tab3:
+	arr=result_svm5.n_support_
+	arr2 = pd.DataFrame(arr)
+	st.write(arr2)
 
-col2.write("""### Indices of the SVM sigmoid""")
-col2.write(arr2)
-
- # get number of support vectors for each class
-arr=result_svm5.n_support_
-arr2 = pd.DataFrame(arr)
-
-col3.write("""### Number for each class in SVM sigmoid""")
-col3.write(arr2)
 
 st.write('')
 st.subheader('Evaluation results:')
@@ -888,21 +873,24 @@ st.subheader('Evaluation results:')
 prediction_5 = result_svm5.predict(x_test)
 
 #Avaluació
-col1,col2,col3=st.columns(3)
-with col1:
+tab1, tab2, tab3 = st.tabs(["Explained Variance Score of SVM sigmoid Kernel", "Accuracy of Balanced SVM sigmoid Kernel Model", "Score of sigmoid Kernel"])
+with tab1:
 	st.metric('Explained Variance Score of SVM sigmoid Kernel: ',(explained_variance_score(y_test,prediction_5)))
-col2.metric('Accuracy of Balanced SVM sigmoid Kernel Model: ',(accuracy_score(y_test,prediction_5)))
-col3.metric('Score of sigmoid Kernel: ',(result_svm5.score(x_test, y_test)))
+with tab2:
+	st.metric('Accuracy of Balanced SVM sigmoid Kernel Model: ',(accuracy_score(y_test,prediction_5)))
+with tab3:
+	st.metric('Score of sigmoid Kernel: ',(result_svm5.score(x_test, y_test)))
 
-col3,col4=st.columns(2)
 report3=(classification_report(y_test,prediction_5))
 df3 = pd.read_csv(io.StringIO(report3))
-with col3:
-	st.write("### Classification Report for SVM sigmoid Kernel Model")
-	st.dataframe(df3)
 report4=(confusion_matrix(y_test,prediction_5))
-col4.write("### Confusion Matrix for SVM sigmoid Kernel Model")
-col4.write(report4)
+
+tab4,tab5=st.tabs(["Classification Report for SVM sigmoid Kernel Model", "Confusion Matrix for SVM sigmoid Kernel Model"])
+
+with tab4:
+	st.dataframe(df3)
+with tab5:
+	st.write(report4)
 
 
 # In[148]:
