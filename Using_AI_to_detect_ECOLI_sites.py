@@ -27,6 +27,15 @@ html_code = """
 
 st.markdown(html_code, unsafe_allow_html=True)
 
+millnames = ['',' k',' M',' B',' T']
+
+def (n):
+    n = float(n)
+    millidx = max(0,min(len(millnames)-1,
+                        int(math.floor(0 if n == 0 else math.log10(abs(n))/3))))
+
+    return '{:.0f}{}'.format(n / 10**(3 * millidx), millnames[millidx])
+
 
 st.markdown(""" <style> div.css-12w0qpk.e1tzin5v2{
  backg-color: #f5f5f5;
@@ -544,8 +553,8 @@ To do that, we will pass the following outcomes to numbers:
 st.write('')
 col1,col2,col3=st.columns(3)
 with col1:
-	st.metric('Explained Variance Score of LogisticRegression multiclass Model: ',(explained_variance_score(y_test,predicion2))
-col2.metric('Logistic Regression Score:',(result_logit2.score(x_test, y_test))
+	st.metric('Explained Variance Score of LogisticRegression multiclass Model: ',(explained_variance_score(y_test,predicion2)))
+col2.metric('Logistic Regression Score:',(result_logit2.score(x_test, y_test)))
 report=(classification_report(y_test,predicion2))
 df = pd.read_csv(io.StringIO(report))
 col3.write("### Classification Report")
@@ -606,8 +615,8 @@ predicion4 = RES.predict(x_test)
 
 col1,col2,col3=st.columns(3)
 with col1:
-	st.metric('Explained Variance Score of Logistic Model 2:',(explained_variance_score(y_test,predicion4))
-col2.metric('Logistic Regression Score for Model 2:',(RES.score(x_test, y_test))
+	st.metric('Explained Variance Score of Logistic Model 2:',(explained_variance_score(y_test,predicion4)))
+col2.metric('Logistic Regression Score for Model 2:',(RES.score(x_test, y_test)))
 report2=(classification_report(y_test,predicion4))
 df2 = pd.read_csv(io.StringIO(report2))
 col3.write("### Classification Report for Model 2")
@@ -720,9 +729,9 @@ prediction_2 = result_svm2.predict(x_test)
 #Avaluació
 col1,col2,col3=st.columns(3)
 with col1:
-	st.metric('Explained Variance Score of SVM Linear Kernel: ',(explained_variance_score(y_test,prediction_2))
-col2.metric('Accuracy of Balanced SVM Linear Kernel Model: ',(accuracy_score(y_test,prediction_2))
-col3.metric('Score of Linear Kernel: ',(result_svm2.score(x_test, y_test))
+	st.metric('Explained Variance Score of SVM Linear Kernel: ',(explained_variance_score(y_test,prediction_2)))
+col2.metric('Accuracy of Balanced SVM Linear Kernel Model: ',(accuracy_score(y_test,prediction_2)))
+col3.metric('Score of Linear Kernel: ',(result_svm2.score(x_test, y_test)))
 
 col3,col4=st.columns(2)
 report3=(classification_report(y_test,prediction_2))
@@ -775,9 +784,9 @@ prediction_3 = result_svm3.predict(x_test)
 #Avaluació
 col1,col2,col3=st.columns(3)
 with col1:
-	st.metric('Explained Variance Score of SVM RBF Kernel: ',(explained_variance_score(y_test,prediction_3))
-col2.metric('Accuracy of Balanced SVM Linear Kernel Model: ',(accuracy_score(y_test,prediction_3))
-col3.metric('Score of RBF Kernel: ',(result_svm3.score(x_test, y_test))
+	st.metric('Explained Variance Score of SVM RBF Kernel: ',(explained_variance_score(y_test,prediction_3)))
+col2.metric('Accuracy of Balanced SVM Linear Kernel Model: ',(accuracy_score(y_test,prediction_3)))
+col3.metric('Score of RBF Kernel: ',(result_svm3.score(x_test, y_test)))
 
 col3,col4=st.columns(2)
 report3=(classification_report(y_test,prediction_3))
@@ -830,9 +839,9 @@ prediction_4 = result_svm4.predict(x_test)
 #Avaluació
 col1,col2,col3=st.columns(3)
 with col1:
-	st.metric('Explained Variance Score of SVM poly Kernel: ',(explained_variance_score(y_test,prediction_4))
-col2.metric('Accuracy of Balanced SVM poly Kernel Model: ',(accuracy_score(y_test,prediction_4))
-col3.metric('Score of poly Kernel: ',(result_svm4.score(x_test, y_test))
+	st.metric('Explained Variance Score of SVM poly Kernel: ',(explained_variance_score(y_test,prediction_4)))
+col2.metric('Accuracy of Balanced SVM poly Kernel Model: ',(accuracy_score(y_test,prediction_4)))
+col3.metric('Score of poly Kernel: ',(result_svm4.score(x_test, y_test)))
 
 col3,col4=st.columns(2)
 report3=(classification_report(y_test,prediction_4))
@@ -885,9 +894,9 @@ prediction_5 = result_svm5.predict(x_test)
 #Avaluació
 col1,col2,col3=st.columns(3)
 with col1:
-	st.metric('Explained Variance Score of SVM sigmoid Kernel: ',(explained_variance_score(y_test,prediction_5))
-col2.metric('Accuracy of Balanced SVM sigmoid Kernel Model: ',(accuracy_score(y_test,prediction_5))
-col3.metric('Score of sigmoid Kernel: ',(result_svm5.score(x_test, y_test))
+	st.metric('Explained Variance Score of SVM sigmoid Kernel: ',(explained_variance_score(y_test,prediction_5)))
+col2.metric('Accuracy of Balanced SVM sigmoid Kernel Model: ',(accuracy_score(y_test,prediction_5)))
+col3.metric('Score of sigmoid Kernel: ',(result_svm5.score(x_test, y_test)))
 
 col3,col4=st.columns(2)
 report3=(classification_report(y_test,prediction_5))
