@@ -233,10 +233,10 @@ fig2.update_layout(
     bargroupgap=0.1 # gap between bars of the same location coordinate.
 )
 
-col1,col2=st.columns(2)
-with col1:
+col1s,col2s=st.columns(2)
+with col1s:
     st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
-col2.plotly_chart(fig2, theme="streamlit", use_container_width=True)
+col2s.plotly_chart(fig2, theme="streamlit", use_container_width=True)
 
 
 
