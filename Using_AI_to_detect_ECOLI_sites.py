@@ -27,14 +27,7 @@ html_code = """
 
 st.markdown(html_code, unsafe_allow_html=True)
 
-millnames = ['',' k',' M',' B',' T']
 
-def (n):
-    n = float(n)
-    millidx = max(0,min(len(millnames)-1,
-                        int(math.floor(0 if n == 0 else math.log10(abs(n))/3))))
-
-    return '{:.0f}{}'.format(n / 10**(3 * millidx), millnames[millidx])
 
 
 st.markdown(""" <style> div.css-12w0qpk.e1tzin5v2{
