@@ -419,7 +419,7 @@ plt.xlabel('Principal components')
 plt.axis('tight')
 plt.title('PCA spectrum')
 st.write("### PCA spectrum")
-st.pyplot(fig)
+st.pyplot()
 
 
 
