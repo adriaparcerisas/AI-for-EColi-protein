@@ -5,4 +5,5 @@ watchdog
 shroomdk
 seaborn
 scikit-learn
+plotly
 favicon
