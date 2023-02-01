@@ -4,4 +4,4 @@ streamlit
 watchdog
 shroomdk
 seaborn
-sklearn
+scikit-learn
