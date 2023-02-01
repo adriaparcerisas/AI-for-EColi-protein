@@ -750,7 +750,7 @@ st.subheader('Prediction results for SVM RBF:')
 tab1, tab2, tab3 = st.tabs(["Support vectors of the SVM RBF", "Indices of the SVM RBF", "Number for each class in SVM RBF"])
 with tab1:
 	arr=result_svm3.support_vectors_
-    	arr2 = pd.DataFrame(arr)
+	arr2 = pd.DataFrame(arr)
 	st.write(arr2)
 with tab2:
 	arr=result_svm3.support_
@@ -802,7 +802,7 @@ st.subheader('Prediction results for SVM poly:')
 tab1, tab2, tab3 = st.tabs(["Support vectors of the SVM poly", "Indices of the SVM poly", "Number for each class in SVM poly"])
 with tab1:
 	arr=result_svm4.support_vectors_
-    	arr2 = pd.DataFrame(arr)
+	arr2 = pd.DataFrame(arr)
 	st.write(arr2)
 with tab2:
 	arr=result_svm4.support_
@@ -854,7 +854,7 @@ st.subheader('Prediction results for SVM sigmoid:')
 tab1, tab2, tab3 = st.tabs(["Support vectors of the SVM sigmoid", "Indices of the SVM sigmoid", "Number for each class in SVM sigmoid"])
 with tab1:
 	arr=result_svm5.support_vectors_
-    	arr2 = pd.DataFrame(arr)
+	arr2 = pd.DataFrame(arr)
 	st.write(arr2)
 with tab2:
 	arr=result_svm5.support_
