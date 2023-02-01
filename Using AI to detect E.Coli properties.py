@@ -954,6 +954,12 @@ st.write('Comparing it with the results of the other kernels through our first r
 
 
 # In[ ]:
+st.write('')
+st.markdown('This app has been done by **_Adrià Parcerisas_**, a PhD Biomedical Engineer related to Machine Learning and Artificial intelligence technical projects for data analysis and research, as well as dive deep on-chain data analysis about cryptocurrency projects. You can find me on [Twitter](https://twitter.com/adriaparcerisas)')
+st.write('')
+st.markdown('The full sources used to develop this app can be found to the following link: [Github link](https://github.com/adriaparcerisas/AI-for-EColi-protein)')
+st.markdown('_Powered by [Flipside Crypto](https://flipsidecrypto.xyz) and [MetricsDAO](https://metricsdao.notion.site)_')
+
 
 
 
