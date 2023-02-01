@@ -17,7 +17,9 @@ import altair as alt
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import favicon
 st.set_page_config(page_title="Protein Localization Sites ", layout="wide",initial_sidebar_state="collapsed")
+favicon.create_icons("ecoli.png")
 
 st.markdown(""" <style> div.css-12w0qpk.e1tzin5v2{
  background-color: #f5f5f5;
