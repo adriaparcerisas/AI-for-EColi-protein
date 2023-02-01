@@ -407,17 +407,17 @@ st.markdown('Looking at the results obtained, at least 3 variables are necessary
 
 
 #Plot the PCA spectrum, per veure la representació gràfica dels resultats
-fig,ax=plt.figure(11)
-ax.clf()
+plt.figure(11)
+plt.clf()
 #plt.axes([.2, .2, .7, .7])
-ax.bar(range(7),pca_values, alpha=0.5, align='center',
+plt.bar(range(7),pca_values, alpha=0.5, align='center',
         label='individual explained variance')
-ax.step(range(7),cum_var_exp, where='mid',
+plt.step(range(7),cum_var_exp, where='mid',
          label='cumulative explained variance')
-ax.ylabel('Explained variance ratio')
-ax.xlabel('Principal components')
-ax.axis('tight')
-ax.title('PCA spectrum')
+plt.ylabel('Explained variance ratio')
+plt.xlabel('Principal components')
+plt.axis('tight')
+plt.title('PCA spectrum')
 st.write("### PCA spectrum")
 st.pyplot(fig)
 
