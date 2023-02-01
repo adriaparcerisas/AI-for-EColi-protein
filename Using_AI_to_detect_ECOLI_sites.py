@@ -913,9 +913,6 @@ plt.figure(14)
 import plotly.subplots as sp
 import plotly.graph_objs as go
 
-y_test = [1, 2, 3, 4, 5]
-prediction_2 = [2, 3, 4, 5, 6]
-
 # Create the subplot with 2 rows and 2 columns, and select the first subplot (1,1)
 fig = sp.make_subplots(rows=2, cols=2, subplot_titles=("SVM classifier: Linear Balanced",))
 
