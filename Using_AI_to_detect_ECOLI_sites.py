@@ -407,26 +407,27 @@ st.markdown('Looking at the results obtained, at least 3 variables are necessary
 
 
 #Plot the PCA spectrum, per veure la representació gràfica dels resultats
-plt.figure(11)
-plt.clf()
+fig,ax=plt.figure(11)
+ax.clf()
 #plt.axes([.2, .2, .7, .7])
-plt.bar(range(7),pca_values, alpha=0.5, align='center',
+ax.bar(range(7),pca_values, alpha=0.5, align='center',
         label='individual explained variance')
-plt.step(range(7),cum_var_exp, where='mid',
+ax.step(range(7),cum_var_exp, where='mid',
          label='cumulative explained variance')
-plt.ylabel('Explained variance ratio')
-plt.xlabel('Principal components')
-plt.axis('tight')
-plt.title('PCA spectrum')
+ax.ylabel('Explained variance ratio')
+ax.xlabel('Principal components')
+ax.axis('tight')
+ax.title('PCA spectrum')
 st.write("### PCA spectrum")
-st.pyplot()
+st.pyplot(fig)
+
 
 
 # In[72]:
 
 
 st.markdown("""
-#### Quines variables estan més relacionades amb els ‘outcomes’ del vostre conjunt de dades?
+#### Which variables are more related to 'outcomes' in our dataset?
 """)
 
 
