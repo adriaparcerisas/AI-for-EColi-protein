@@ -198,11 +198,6 @@ st.subheader('3. Attributes histogram')
 
 # In[49]:
 
-
-#canviar x per data
-import plotly.express as px
-
-
 fig1s = px.histogram(data, x="mcg", nbins=20)
 fig1s.update_layout(
     title='McGeochs method for signal sequence recognition',
