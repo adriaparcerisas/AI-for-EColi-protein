@@ -392,12 +392,11 @@ st.write("### Principal Component Analysis (PCA)")
 st.write(dic)
 dic={'1': pca_values[0],'2': pca_values[1],'3': pca_values[2],'4': pca_values[3],'5': pca_values[4],'6': pca_values[5],'7': pca_values[6]}
 st.write('')
-col1,col2=st.columns(2)
-with col1:
-	st.write("### PCA values")
-	st.write(dic)
-col2.write("### PCA Cumsum Explained Variance values")
-col2.write(cum_var_exp)
+tab1, tab2 = st.tabs(["PCA values", "PCA Cumsum Explained Variance values"])
+with tab1:
+   st.write(dic)
+with tab2:
+   st.write(cum_var_exp)
 
 
 # In[69]:
@@ -544,14 +543,15 @@ To do that, we will pass the following outcomes to numbers:
 - pp-->7
          """)
 st.write('')
-col1,col2,col3=st.columns(3)
-with col1:
-	st.metric('Explained Variance Score of LogisticRegression multiclass Model: ',(explained_variance_score(y_test,predicion2)))
-col2.metric('Logistic Regression Score:',(result_logit2.score(x_test, y_test)))
 report=(classification_report(y_test,predicion2))
 df = pd.read_csv(io.StringIO(report))
-col3.write("### Classification Report")
-col3.dataframe(df)
+tab1, tab2, tab3 = st.tabs(["Explained Variance Score Model", "Logistic Regression Score", "Classification Report"])
+with tab1:
+	st.metric('Explained Variance Score of LogisticRegression multiclass Model: ',(explained_variance_score(y_test,predicion2)))
+with tab2:
+	st.metric('Logistic Regression Score:',(result_logit2.score(x_test, y_test)))
+with tab3:
+	st.dataframe(df)
 
 
 
@@ -606,14 +606,17 @@ estimator = GridSearchCV(pipe,dict(pca__n_components=n_components,
 RES=estimator.fit(x_train, np.ravel(y_train))
 predicion4 = RES.predict(x_test)
 
-col1,col2,col3=st.columns(3)
-with col1:
-	st.metric('Explained Variance Score of Logistic Model 2:',(explained_variance_score(y_test,predicion4)))
-col2.metric('Logistic Regression Score for Model 2:',(RES.score(x_test, y_test)))
+st.write('')
 report2=(classification_report(y_test,predicion4))
 df2 = pd.read_csv(io.StringIO(report2))
-col3.write("### Classification Report for Model 2")
-col3.dataframe(df2)
+tab1, tab2, tab3 = st.tabs(["Explained Variance Score Model 2", "Logistic Regression Score Model 2", "Classification Report Model 2"])
+with tab1:
+	st.metric('Explained Variance Score of LogisticRegression multiclass Model: ',(explained_variance_score(y_test,predicion4)))
+with tab2:
+	st.metric('Logistic Regression Score for Model 2:',(RES.score(x_test, y_test)))
+with tab3:
+	st.dataframe(df2)
+
 st.write('')
 
 #print (np.exp(RES.params))
