@@ -5,3 +5,4 @@ watchdog
 shroomdk
 seaborn
 scikit-learn
+favicon
