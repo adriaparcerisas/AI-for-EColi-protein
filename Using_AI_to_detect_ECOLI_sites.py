@@ -108,14 +108,14 @@ Reference: "A Knowledge Base for Predicting Protein Localization Sites in Eukary
 	     
 7. Attribute Information.
 
-  1.  Sequence Name: Accession number for the SWISS-PROT database
-  2.  mcg: McGeoch's method for signal sequence recognition.
-  3.  gvh: von Heijne's method for signal sequence recognition.
-  4.  lip: von Heijne's Signal Peptidase II consensus sequence score.
-  5.  chg: Presence of charge on N-terminus of predicted lipoproteins.
-  6.  aac: score of discriminant analysis of the amino acid content of outer membrane and periplasmic proteins.
-  7. alm1: score of the ALOM membrane spanning region prediction program.
-  8. alm2: score of ALOM program after excluding putative cleavable signal regions from the sequence.
+  - Sequence Name: Accession number for the SWISS-PROT database
+  - mcg: McGeoch's method for signal sequence recognition.
+  - gvh: von Heijne's method for signal sequence recognition.
+  - lip: von Heijne's Signal Peptidase II consensus sequence score.
+  - chg: Presence of charge on N-terminus of predicted lipoproteins.
+  - aac: score of discriminant analysis of the amino acid content of outer membrane and periplasmic proteins.
+  - alm1: score of the ALOM membrane spanning region prediction program.
+  - alm2: score of ALOM program after excluding putative cleavable signal regions from the sequence.
 
 
 
